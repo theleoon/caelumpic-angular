@@ -1,11 +1,24 @@
-<section class="jumbotron">
-  <h1 class="text-center">
-    {{title}}
-  </h1>
-</section>
-<div class="container">
-  <!--<img class="img-responsive center-block" width="300" src="assets/pokemon.jpg" />-->
-  <Foto *ngFor="let foto of fotos" url="{{foto.url}}" titulo="{{foto.titulo}}"></Foto>
-</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="http://github.com/theleoon" target="_blank">
+            <img alt="Leonardo Silva - Github" width="40" height="40" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/github-512.png">
+          </a>
+        </div>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a [routerLink]="['']">Inicio</a></li>
+      <li><a [routerLink]="['/cadastro']">Cadastro</a></li>
+      <li><a [routerLink]="['/lista']">Lista de fotos</a></li>
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar fotos">
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+    </form>
+</nav>
+
+<router-outlet></router-outlet>
 
 
