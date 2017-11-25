@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'Foto',
-  templateUrl: './foto.component.html'
+  templateUrl: './foto.component.html',
+  styleUrls: ['./foto.component.css']
+  
 })
 export class FotoComponent {
   @Input() titulo: string = '';

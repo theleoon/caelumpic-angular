@@ -1,0 +1,12 @@
+.foto {
+    margin-bottom: 10px;
+}
+
+.efeito:hover {
+    transition: all 0.3s;
+    transform: scale(1.1);
+}
+
+.efeito {
+    transition: all 0.6s;
+}

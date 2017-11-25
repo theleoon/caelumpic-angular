@@ -9,31 +9,41 @@
 	</div>
 	<div class="col-sm-6">
     <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
-		<form (submit)="cadastrar($event)" class="row">
-
+		<form #formCadastro="ngForm" (submit)="cadastrar($event)" class="row">
+			<!-- {{ formCadastro.form.valid }} -->
 			<div class="form-group">
-				<label>Título</label> <input [(ngModel)]="foto.titulo"
-					class="form-control" name="titulo">
+				<label>Título</label> 
+				<input required [(ngModel)]="foto.titulo"
+					class="form-control" name="titulo" #titulo="ngModel">
+				<span *ngIf="titulo.invalid && !titulo.pristine" class="form-control alert-danger">
+						Titulo obrigatório
+				</span>
 			</div>
+			
 			<div class="form-group">
-				<label>URL</label> <input [(ngModel)]="foto.url" name="url"
-					class="form-control">
+				<label>URL</label> 
+				<input required [(ngModel)]="foto.url" name="url"
+					class="form-control" #url="ngModel">
+				<span *ngIf="url.invalid && !url.pristine" class="form-control alert-danger">
+						URL da imagem é obrigatório
+				</span>
 			</div>
+			
 			<div class="form-group">
 				<label>Descrição</label>
-				<textarea [(ngModel)]="foto.descricao" name="descricao"
-					class="form-control">
-  </textarea>
+				<textarea required [(ngModel)]="foto.descricao" name="descricao"
+					class="form-control" #descricao="ngModel">
+				  </textarea>
+				<span *ngIf="descricao.invalid && !descricao.pristine" class="form-control alert-danger">
+						Descrição é obrigatório
+				</span>
 			</div>
-			<button type="submit" class="btn btn-primary">Salvar</button>
+			<button type="submit" class="btn btn-primary" [disabled]="formCadastro.form.invalid">Salvar</button>
 			<a [routerLink]="['/lista']" class="btn btn-danger">Voltar</a>
-
 		</form>
 	</div>
-
 	<aside class="col-sm-6">
 		<Foto url="{{ foto.url }}" titulo="{{ foto.titulo }}"></Foto>
 	</aside>
-
 </div>
 

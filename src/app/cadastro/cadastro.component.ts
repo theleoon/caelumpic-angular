@@ -17,9 +17,10 @@ export class CadastroComponent {
   route: ActivatedRoute;
 	router: Router;
 
-  constructor(service: FotoService, route: ActivatedRoute){
+  constructor(service: FotoService, route: ActivatedRoute, router: Router){
     this.service = service;
     this.route = route;
+    this.router = router;
 
     this.route.params.subscribe(params => {
 			let id = params['id'];
@@ -43,6 +44,7 @@ export class CadastroComponent {
     this.service.cadastra(this.foto).subscribe(() => { this.foto = new FotoComponent();
     this.mensagem = 'Foto salva com sucesso';
     this.foto = new FotoComponent();
+    this.router.navigate(['lista']);
     }, erro => {console.log(erro)
        this.mensagem = 'Houve um erro ao salvar a foto';
     });
