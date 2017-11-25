@@ -14,6 +14,7 @@ import { Page404Component } from './page404/page404.component';
 import { DestroyComponent } from './destroy/destroy.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { FormsModule } from '@angular/forms';
+import { BotaoComponent } from './Botao/botao.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     CadastroComponent,
     Page404Component,
     DestroyComponent,
-    InicioComponent
+    InicioComponent,
+    BotaoComponent
   ],
   imports: [
     BrowserModule,

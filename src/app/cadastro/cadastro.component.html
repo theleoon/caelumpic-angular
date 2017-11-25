@@ -1,30 +1,39 @@
 <div class="container">
-    <div class="page-header">
-        <h1>Cadastro de nova foto <small>preencha completamente o formulário</small></h1>
-    </div>
-    <div class="jumbotron">
-      <h2>{{foto.titulo}}</h2>
-    </div>
+	<div class="page-header">
+		<h1>
+			{{operacao}} <small>{{smallOperacao}}</small>
+		</h1>
+	</div>
+	<div class="jumbotron">
+		<h2>{{foto.titulo}}</h2>
+	</div>
+	<div class="col-sm-6">
+    <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+		<form (submit)="cadastrar($event)" class="row">
 
-    <form (submit)="cadastrar($event)" class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Título</label> <input [(ngModel)]="foto.titulo"
-            class="form-control" name="titulo">
-        </div>
-        <div class="form-group">
-          <label>URL</label> <input [(ngModel)]="foto.url" name="url" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Descrição</label>
-          <textarea [(ngModel)]="foto.descricao" name="descricao" class="form-control">
+			<div class="form-group">
+				<label>Título</label> <input [(ngModel)]="foto.titulo"
+					class="form-control" name="titulo">
+			</div>
+			<div class="form-group">
+				<label>URL</label> <input [(ngModel)]="foto.url" name="url"
+					class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Descrição</label>
+				<textarea [(ngModel)]="foto.descricao" name="descricao"
+					class="form-control">
   </textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a [routerLink]="['']" class="btn btn-danger">Voltar</a>
-      </div>
-    </form>
-  </div>
-  <aside class="col-md-6">
-    <Foto url="{{foto.url}}"></Foto>
-  </aside>
+			</div>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+			<a [routerLink]="['/lista']" class="btn btn-danger">Voltar</a>
+
+		</form>
+	</div>
+
+	<aside class="col-sm-6">
+		<Foto url="{{ foto.url }}" titulo="{{ foto.titulo }}"></Foto>
+	</aside>
+
+</div>
+

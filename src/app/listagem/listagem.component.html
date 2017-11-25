@@ -1,27 +1,32 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                      <a [routerLink]="['/cadastro']" class="btn btn-primary">
-                      Nova foto
-                      </a>
-                    </span>
-                    <!-- campo para filtrar pelo titulo -->
-                    <input #textoProcurado (keyup)="0" class="form-control" placeholder="Filtrar por título">
-                  </div>
-            </form>
-        </div> <!-- fim
-        </div> <!-- fim col-md-12 -->
-    </div> <!-- fim row -->
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                        <a [routerLink]="['/cadastro']" class="btn btn-primary">
+                        Nova foto
+                        </a>
+                        </span>
+                        <!-- campo para filtrar pelo titulo -->
+                        <input #textoProcurado (keyup)="0" class="form-control" placeholder="Filtrar por título">
+                    </div>
+                </form>
+            </div> <!-- fim -->
+        </div> <!-- fim row -->
+    </section>
 <br>
-    <div class="page-header">
-        <h1>Todas as fotos <small>só coisa linda</small></h1>
-    </div>
-    <div class="row">
-      <Painel *ngFor="let foto of fotos | filtroPorTitulo:textoProcurado.value" titulo="{{foto.titulo | uppercase}}" class="col-md-2">
-        <Foto  url="{{foto.url}}" titulo="{{foto.titulo}}" ></Foto>
-      </Painel>
-    </div>
-</div>
+    <section class="container">
+        <div class="page-header">
+            <h1>Todas as fotos <small>só coisa linda</small></h1>
+        </div>
+    </section>
+    <section class="container">
+        <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+        <Painel *ngFor="let foto of fotos | filtroPorTitulo:textoProcurado.value" titulo="{{foto.titulo | uppercase}}" class="col-md-2 col-sm-4">
+            <a [routerLink]="['/cadastro', foto._id]">
+            <Foto  url="{{foto.url}}" titulo="{{foto.titulo}}"></Foto>
+            </a>
+            <Botao nome="Remover" estilo="btn-danger btn-block" (acao)="remove(foto)"></Botao>
+        </Painel>
+    </section>

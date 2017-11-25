@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { FotoComponent } from '../foto/foto.component';
-import { Http, Headers} from '@angular/http';
+import { FotoComponent } from '../Foto/foto.component';
+import { FotoService } from '../Foto/foto.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'cadastro',
@@ -8,19 +9,42 @@ import { Http, Headers} from '@angular/http';
 })
 
 export class CadastroComponent {
+  operacao: string = 'Cadastro de nova foto';
+  smallOperacao: string = 'preencha completamente o formulário';
   foto: FotoComponent = new FotoComponent();
-  http: Http;
+  service: FotoService;
+  mensagem: string = '';
+  route: ActivatedRoute;
+	router: Router;
 
-  constructor(http: Http){
-    this.http = http;
+  constructor(service: FotoService, route: ActivatedRoute){
+    this.service = service;
+    this.route = route;
+
+    this.route.params.subscribe(params => {
+			let id = params['id'];
+			if(id) {
+			this.service.buscaPorId(id)
+			.subscribe(
+      foto => {
+        this.operacao = 'Atualização de foto';
+        this.foto = foto
+			  this.mensagem = 'Foto carregada com sucesso';
+			},
+				erro => {console.log(erro)
+				this.mensagem = 'Houve um erro ao carregar a foto';
+				});
+			}
+		});
   }
   
-  cadastrar() {
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:3000/v1/fotos', JSON.stringify(this.foto), { headers: headers })
-    .subscribe(() => { this.foto = new FotoComponent();
-    console.log('Foto salva com sucesso');
-    }, erro => console.log(erro));
+  cadastrar(event) {
+    event.preventDefault();
+    this.service.cadastra(this.foto).subscribe(() => { this.foto = new FotoComponent();
+    this.mensagem = 'Foto salva com sucesso';
+    this.foto = new FotoComponent();
+    }, erro => {console.log(erro)
+       this.mensagem = 'Houve um erro ao salvar a foto';
+    });
   }
 }

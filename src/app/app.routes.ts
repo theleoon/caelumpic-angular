@@ -8,6 +8,7 @@ import { DestroyComponent } from './destroy/destroy.component';
 const appRoutes: Routes = [
     { path: '', component: InicioComponent },
     { path: 'cadastro', component: CadastroComponent },
+    { path: 'cadastro/:id', component: CadastroComponent },
     { path: 'lista', component: ListagemComponent },
     { path: 'destroy', component: DestroyComponent },
     //{ path: '**', redirectTo: '' }
