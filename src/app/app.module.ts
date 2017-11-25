@@ -13,7 +13,7 @@ import { routing } from './app.routes';
 import { Page404Component } from './page404/page404.component';
 import { DestroyComponent } from './destroy/destroy.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BotaoComponent } from './Botao/botao.component';
 
 @NgModule({
@@ -32,7 +32,8 @@ import { BotaoComponent } from './Botao/botao.component';
     HttpModule,
     PainelModule,
     routing,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

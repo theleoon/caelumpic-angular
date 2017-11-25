@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FotoComponent } from '../Foto/foto.component';
 import { FotoService } from '../Foto/foto.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cadastro',
@@ -15,12 +16,18 @@ export class CadastroComponent {
   service: FotoService;
   mensagem: string = '';
   route: ActivatedRoute;
-	router: Router;
+  router: Router;
+  formCadastro: FormGroup;
 
-  constructor(service: FotoService, route: ActivatedRoute, router: Router){
+  constructor(service: FotoService, route: ActivatedRoute, router: Router, formBuilder: FormBuilder){
     this.service = service;
     this.route = route;
     this.router = router;
+    this.formCadastro = formBuilder.group({
+      titulo: ['', Validators.required],
+      url: ['', Validators.required],
+      descricao: []
+    });
 
     this.route.params.subscribe(params => {
 			let id = params['id'];
