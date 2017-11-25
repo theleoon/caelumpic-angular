@@ -24,8 +24,8 @@ export class CadastroComponent {
     this.route = route;
     this.router = router;
     this.formCadastro = formBuilder.group({
-      titulo: ['', Validators.required],
-      url: ['', Validators.required],
+      titulo: ['', Validators.compose([ Validators.required, Validators.minLength(3) ])],
+      url: ['', Validators.compose([ Validators.required, Validators.minLength(10) ])],
       descricao: []
     });
 

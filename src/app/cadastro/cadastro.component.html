@@ -17,8 +17,9 @@
 					class="form-control" name="titulo">
 				<span *ngIf="
 							formCadastro.controls.titulo.invalid &&
-							!formCadastro.controls.titulo.pristine" class="form-control alert-danger">
-						Titulo obrigatório
+							!formCadastro.controls.titulo.pristine" >
+					<span *ngIf="formCadastro.controls.titulo.errors.required" class="form-control alert-danger">Titulo é obrigatório</span>
+					<span *ngIf="formCadastro.controls.titulo.errors.minlength" class="form-control alert-danger">Titulo de possuir no mínimo 3 caracteres</span>
 				</span>
 			</div>
 			
@@ -28,7 +29,8 @@
 					class="form-control">
 				<span *ngIf="formCadastro.controls.url.invalid 
 				&& !formCadastro.controls.url.pristine" class="form-control alert-danger">
-						URL da imagem é obrigatório
+				<span *ngIf="formCadastro.controls.url.errors.required">URL da imagem é obrigatório</span>
+				<span *ngIf="formCadastro.controls.url.errors.minlength">URL de possuir no mínimo 10 caracteres</span>
 				</span>
 			</div>
 			
